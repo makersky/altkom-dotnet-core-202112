@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Altkom.Shopper.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,15 @@ namespace Altkom.Shopper.WebApi.Controllers
         }
 
         // GET api/customers
+        [HttpGet("api/customers")]
+        public IEnumerable<Customer> Get()
+        {
+            // ...
+
+            // var customers = ...;
+
+            throw new NotImplementedException();
+        }
 
     }
 }

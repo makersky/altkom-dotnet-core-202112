@@ -5,6 +5,16 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altkom.Shopper.WebApi", "Altkom.Shopper.WebApi\Altkom.Shopper.WebApi.csproj", "{F7F8DFF0-F9BD-457B-A8A1-E0A2EBB297C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altkom.Shopper.Models", "Altkom.Shopper.Models\Altkom.Shopper.Models.csproj", "{DB352CEA-C31A-4285-BD5E-CE11D426CDCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altkom.Shopper.IRepositories", "Altkom.Shopper.IRepositories\Altkom.Shopper.IRepositories.csproj", "{73A545BA-3CAA-415B-AF59-73D9EF23FEFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altkom.Shopper.DbRepositories", "Altkom.Shopper.DbRepositories\Altkom.Shopper.DbRepositories.csproj", "{C3722AD5-C522-4C13-93D5-549BC434D3D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altkom.Shopper.FakeRepositories", "Altkom.Shopper.FakeRepositories\Altkom.Shopper.FakeRepositories.csproj", "{DBECF981-8799-4929-83E0-8C55C9376F8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altkom.Shopper.Fakers", "Altkom.Shopper.Fakers\Altkom.Shopper.Fakers.csproj", "{6E2D57E9-809C-42D9-AC2F-AB32509AC095}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +25,26 @@ Global
 		{F7F8DFF0-F9BD-457B-A8A1-E0A2EBB297C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7F8DFF0-F9BD-457B-A8A1-E0A2EBB297C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7F8DFF0-F9BD-457B-A8A1-E0A2EBB297C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB352CEA-C31A-4285-BD5E-CE11D426CDCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB352CEA-C31A-4285-BD5E-CE11D426CDCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB352CEA-C31A-4285-BD5E-CE11D426CDCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB352CEA-C31A-4285-BD5E-CE11D426CDCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73A545BA-3CAA-415B-AF59-73D9EF23FEFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73A545BA-3CAA-415B-AF59-73D9EF23FEFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73A545BA-3CAA-415B-AF59-73D9EF23FEFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73A545BA-3CAA-415B-AF59-73D9EF23FEFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3722AD5-C522-4C13-93D5-549BC434D3D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3722AD5-C522-4C13-93D5-549BC434D3D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3722AD5-C522-4C13-93D5-549BC434D3D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3722AD5-C522-4C13-93D5-549BC434D3D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBECF981-8799-4929-83E0-8C55C9376F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBECF981-8799-4929-83E0-8C55C9376F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBECF981-8799-4929-83E0-8C55C9376F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBECF981-8799-4929-83E0-8C55C9376F8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E2D57E9-809C-42D9-AC2F-AB32509AC095}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E2D57E9-809C-42D9-AC2F-AB32509AC095}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E2D57E9-809C-42D9-AC2F-AB32509AC095}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E2D57E9-809C-42D9-AC2F-AB32509AC095}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
