@@ -9,6 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Altkom.Shopper.FakeRepositories\Altkom.Shopper.FakeRepositories.csproj" />
+    <ProjectReference Include="..\Altkom.Shopper.Fakers\Altkom.Shopper.Fakers.csproj" />
+    <ProjectReference Include="..\Altkom.Shopper.IRepositories\Altkom.Shopper.IRepositories.csproj" />
     <ProjectReference Include="..\Altkom.Shopper.Models\Altkom.Shopper.Models.csproj" />
   </ItemGroup>
 

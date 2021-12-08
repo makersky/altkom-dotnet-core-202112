@@ -1,5 +1,6 @@
 ﻿using Altkom.Shopper.IRepositories;
 using Altkom.Shopper.Models;
+using Bogus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace Altkom.Shopper.FakeRepositories
     {
         private readonly ICollection<Customer> customers;
 
-        public FakeCustomerRepository()
+        public FakeCustomerRepository(Faker<Customer> faker)
         {
-           
+            customers = faker.Generate(100);           
         }
 
         public void Add(Customer customer)

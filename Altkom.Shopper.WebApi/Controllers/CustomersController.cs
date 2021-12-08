@@ -1,4 +1,5 @@
-﻿using Altkom.Shopper.Models;
+﻿using Altkom.Shopper.IRepositories;
+using Altkom.Shopper.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,14 @@ namespace Altkom.Shopper.WebApi.Controllers
 {
     public class CustomersController : ControllerBase
     {
+        private readonly ICustomerRepository customerRepository;
+
+        public CustomersController(ICustomerRepository customerRepository)
+        {
+            this.customerRepository = customerRepository;
+        }
+
+
         [HttpGet("api/ping")]
         public string Ping()
         {
@@ -19,11 +28,9 @@ namespace Altkom.Shopper.WebApi.Controllers
         [HttpGet("api/customers")]
         public IEnumerable<Customer> Get()
         {
-            // ...
+            var customers = customerRepository.Get();
 
-            // var customers = ...;
-
-            throw new NotImplementedException();
+            return customers;
         }
 
     }

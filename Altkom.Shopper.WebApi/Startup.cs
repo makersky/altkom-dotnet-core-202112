@@ -1,3 +1,8 @@
+using Altkom.Shopper.FakeRepositories;
+using Altkom.Shopper.Fakers;
+using Altkom.Shopper.IRepositories;
+using Altkom.Shopper.Models;
+using Bogus;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,7 +31,9 @@ namespace Altkom.Shopper.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddTransient<Faker<Customer>, CustomerFaker>();
+            services.AddTransient<ICustomerRepository, FakeCustomerRepository>();
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
