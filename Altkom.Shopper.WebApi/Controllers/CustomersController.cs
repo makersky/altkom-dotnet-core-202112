@@ -33,5 +33,14 @@ namespace Altkom.Shopper.WebApi.Controllers
             return customers;
         }
 
+        // GET api/customers/{id}
+        [HttpGet("api/customers/{id}")]
+        public Customer Get(int id)
+        {
+            var customer = customerRepository.Get(id);
+
+            return customer;
+        }
+
     }
 }
