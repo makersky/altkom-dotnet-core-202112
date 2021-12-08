@@ -26,6 +26,11 @@ namespace Altkom.Shopper.FakeRepositories
             customers.Add(customer);
         }
 
+        public bool Exists(int id)
+        {
+            return customers.Any(c => c.Id == id);
+        }
+
         public IEnumerable<Customer> Get()
         {
             return customers;

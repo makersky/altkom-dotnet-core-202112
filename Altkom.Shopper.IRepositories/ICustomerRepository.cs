@@ -20,6 +20,7 @@ namespace Altkom.Shopper.IRepositories
         void Add(Customer customer);
         void Update(Customer customer);
         void Remove(int id);
+        bool Exists(int id);
     }
 
 }

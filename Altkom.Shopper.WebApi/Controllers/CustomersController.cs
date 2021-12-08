@@ -49,6 +49,18 @@ namespace Altkom.Shopper.WebApi.Controllers
             return Ok(customer);
         }
 
+        // [AcceptVerbs("HEAD")]
+        [HttpHead("{id}")]
+        public ActionResult Head(int id)
+        {
+            if (!customerRepository.Exists(id))
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+
         // https://docs.microsoft.com/pl-pl/aspnet/core/fundamentals/routing?view=aspnetcore-6.0#route-constraint-reference
 
         // GET api/customers/{pesel}
