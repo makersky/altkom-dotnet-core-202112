@@ -1,5 +1,6 @@
 ﻿using Altkom.Shopper.IRepositories;
 using Altkom.Shopper.Models;
+using Altkom.Shopper.Models.SearchCriterias;
 using System;
 using System.Collections.Generic;
 
@@ -23,6 +24,11 @@ namespace Altkom.Shopper.DbRepositories
         }
 
         public Customer Get(string pesel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Customer> Get(CustomerSearchCriteria searchCriteria)
         {
             throw new NotImplementedException();
         }

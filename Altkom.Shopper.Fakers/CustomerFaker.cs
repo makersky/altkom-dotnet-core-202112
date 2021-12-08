@@ -14,6 +14,7 @@ namespace Altkom.Shopper.Fakers
         public CustomerFaker()
         {
             UseSeed(1);
+            StrictMode(true);
             RuleFor(p => p.Id, f => f.IndexFaker);
             RuleFor(p => p.FirstName, f => f.Person.FirstName);
             RuleFor(p => p.LastName, f => f.Person.LastName);
@@ -21,6 +22,7 @@ namespace Altkom.Shopper.Fakers
             RuleFor(p => p.Pesel, f => f.Person.Pesel());
             RuleFor(p => p.Gender, f => (Gender) f.Person.Gender);
             RuleFor(p => p.IsRemoved, f => f.Random.Bool(0.2f));
+            RuleFor(p => p.Debit, f => Math.Round( f.Random.Decimal(0, 1000),0));
         }
     }
 }

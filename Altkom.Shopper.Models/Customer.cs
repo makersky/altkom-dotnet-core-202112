@@ -10,6 +10,7 @@ namespace Altkom.Shopper.Models
         public string Pesel { get; set; }
         public Gender Gender { get; set; }
         public bool IsRemoved { get; set; }
+        public decimal Debit { get; set; }
     }
 
     public enum Gender

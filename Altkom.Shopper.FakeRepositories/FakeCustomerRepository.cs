@@ -1,5 +1,6 @@
 ﻿using Altkom.Shopper.IRepositories;
 using Altkom.Shopper.Models;
+using Altkom.Shopper.Models.SearchCriterias;
 using Bogus;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,29 @@ namespace Altkom.Shopper.FakeRepositories
         public Customer Get(string pesel)
         {
             return customers.SingleOrDefault(c => c.Pesel == pesel);
+        }
+
+        public IEnumerable<Customer> Get(CustomerSearchCriteria searchCriteria)
+        {
+            IQueryable<Customer> query = customers.AsQueryable();
+
+            if (searchCriteria.Gender.HasValue)
+            {
+                query = query.Where(c => c.Gender == searchCriteria.Gender);
+            }
+
+            if (searchCriteria.From.HasValue)
+            {
+                query = query.Where(c => c.Debit >= searchCriteria.From);
+            }
+
+            if (searchCriteria.To.HasValue)
+            {
+                query = query.Where(c => c.Debit <= searchCriteria.To);
+            }
+
+            return query.ToList();            
+
         }
 
         public void Remove(int id)
