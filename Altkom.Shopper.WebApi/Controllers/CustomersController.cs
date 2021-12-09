@@ -101,6 +101,11 @@ namespace Altkom.Shopper.WebApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Customer>> Get([FromQuery] CustomerSearchCriteria searchCriteria)
         {
+            if (this.HttpContext.Request.Method=="GET")
+            {
+
+            }
+
             var customers = customerRepository.Get(searchCriteria);
 
             return Ok(customers);

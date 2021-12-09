@@ -23,6 +23,8 @@ namespace Altkom.Shopper.Fakers
             RuleFor(p => p.Gender, f => (Gender) f.Person.Gender);
             RuleFor(p => p.IsRemoved, f => f.Random.Bool(0.2f));
             RuleFor(p => p.Debit, f => Math.Round( f.Random.Decimal(0, 1000),0));
+            Ignore(p => p.Password);
+            Ignore(p => p.ConfirmPassword);
         }
     }
 }
