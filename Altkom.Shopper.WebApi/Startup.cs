@@ -3,6 +3,7 @@ using Altkom.Shopper.Fakers;
 using Altkom.Shopper.IRepositories;
 using Altkom.Shopper.Models;
 using Altkom.Shopper.Models.Validators;
+using Altkom.Shopper.WebApi.Hubs;
 using Bogus;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -53,6 +54,9 @@ namespace Altkom.Shopper.WebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Altkom.Shopper.WebApi", Version = "v1" });
             });
+
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,6 +93,8 @@ namespace Altkom.Shopper.WebApi
                 // endpoints.MapGet("api/orders/{id:int}", (int id, IOrderRepository orderRepository) => orderRepository.Get(id))
 
                 endpoints.MapControllers();
+
+                endpoints.MapHub<CustomersHub>("/signalr/customers");
             });
         }
     }

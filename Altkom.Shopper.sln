@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Altkom.Shopper.Fakers", "Al
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altkom.Shopper.Api", "Altkom.Shopper.Api\Altkom.Shopper.Api.csproj", "{D195A61E-AD1F-4184-B18A-2AC88435D742}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altkom.Shopper.SenderSignalRClient", "Altkom.Shopper.SenderSignalRClient\Altkom.Shopper.SenderSignalRClient.csproj", "{85343A44-AAF6-46E2-BC19-DDFF0ADEFDC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altkom.Shopper.ReceiverSignalRClient", "Altkom.Shopper.ReceiverSignalRClient\Altkom.Shopper.ReceiverSignalRClient.csproj", "{E6ED0ACC-3F41-40BE-AB88-FA4B9A7264DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{D195A61E-AD1F-4184-B18A-2AC88435D742}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D195A61E-AD1F-4184-B18A-2AC88435D742}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D195A61E-AD1F-4184-B18A-2AC88435D742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85343A44-AAF6-46E2-BC19-DDFF0ADEFDC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85343A44-AAF6-46E2-BC19-DDFF0ADEFDC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85343A44-AAF6-46E2-BC19-DDFF0ADEFDC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85343A44-AAF6-46E2-BC19-DDFF0ADEFDC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6ED0ACC-3F41-40BE-AB88-FA4B9A7264DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6ED0ACC-3F41-40BE-AB88-FA4B9A7264DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6ED0ACC-3F41-40BE-AB88-FA4B9A7264DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6ED0ACC-3F41-40BE-AB88-FA4B9A7264DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
