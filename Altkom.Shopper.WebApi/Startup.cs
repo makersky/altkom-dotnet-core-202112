@@ -33,8 +33,12 @@ namespace Altkom.Shopper.WebApi
         {
             services.AddSingleton<Faker<Customer>, CustomerFaker>();
             services.AddSingleton<ICustomerRepository, FakeCustomerRepository>();
-            
-            services.AddControllers();
+
+
+            // Install-Package Microsoft.AspNetCore.Mvc.NewtonsoftJson
+            services.AddControllers()
+                .AddNewtonsoftJson();
+               
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Altkom.Shopper.WebApi", Version = "v1" });

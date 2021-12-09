@@ -2,6 +2,7 @@
 using Altkom.Shopper.Models;
 using Altkom.Shopper.Models.SearchCriterias;
 using Bogus;
+using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,6 +82,13 @@ namespace Altkom.Shopper.FakeRepositories
             oldCustomer.LastName = customer.LastName;
             oldCustomer.Pesel = customer.Pesel;
             oldCustomer.Email = customer.Email;
+        }
+
+        public void Update(int id, JsonPatchDocument<Customer> patchCustomer)
+        {
+            Customer oldCustomer = Get(id);
+
+            patchCustomer.ApplyTo(oldCustomer);
         }
     }
 }

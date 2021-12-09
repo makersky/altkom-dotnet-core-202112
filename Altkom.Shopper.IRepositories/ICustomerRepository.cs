@@ -1,5 +1,6 @@
 ﻿using Altkom.Shopper.Models;
 using Altkom.Shopper.Models.SearchCriterias;
+using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Collections.Generic;
 
@@ -19,6 +20,7 @@ namespace Altkom.Shopper.IRepositories
 
         void Add(Customer customer);
         void Update(Customer customer);
+        void Update(int id, JsonPatchDocument<Customer> patchCustomer);
         void Remove(int id);
         bool Exists(int id);
     }

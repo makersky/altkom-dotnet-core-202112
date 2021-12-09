@@ -2,6 +2,7 @@
 using Altkom.Shopper.Models;
 using Altkom.Shopper.Models.SearchCriterias;
 using Altkom.Shopper.WebApi.DTO;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -117,6 +118,31 @@ namespace Altkom.Shopper.WebApi.Controllers
             // return CreatedAtRoute("GetCustomerById", new { id = customer.Id }, customer);
 
             return CreatedAtRoute(nameof(GetCustomerById), new { id = customer.Id }, customer);
+        }
+
+        // PUT api/customers/{id}
+        [HttpPut("{id}")]
+        public ActionResult Put(int id, [FromBody] Customer customer)
+        {
+            if (id!=customer.Id)
+            {
+                return BadRequest();
+            }
+
+            customerRepository.Update(customer);
+
+            return NoContent();
+        }
+
+        // Install-Package Microsoft.AspNetCore.JsonPatch
+        // Content-Type: application/json-patch+json
+
+        [HttpPatch("{id}")]
+        public ActionResult Patch(int id, [FromBody] JsonPatchDocument<Customer> patchCustomer)
+        {
+            customerRepository.Update(id, patchCustomer);
+
+            return NoContent();
         }
 
 
