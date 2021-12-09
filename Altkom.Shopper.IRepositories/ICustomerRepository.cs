@@ -6,10 +6,8 @@ using System.Collections.Generic;
 
 namespace Altkom.Shopper.IRepositories
 {
-    public interface ICustomerRepository
-    {
-        IEnumerable<Customer> Get();
-        Customer Get(int id);
+    public interface ICustomerRepository : IEntityRepository<Customer>
+    {      
         Customer Get(string pesel);
 
         // zła praktyka:
@@ -18,11 +16,7 @@ namespace Altkom.Shopper.IRepositories
         // dobra praktyka:
         IEnumerable<Customer> Get(CustomerSearchCriteria searchCriteria);
 
-        void Add(Customer customer);
-        void Update(Customer customer);
-        void Update(int id, JsonPatchDocument<Customer> patchCustomer);
-        void Remove(int id);
-        bool Exists(int id);
+       
     }
 
 }

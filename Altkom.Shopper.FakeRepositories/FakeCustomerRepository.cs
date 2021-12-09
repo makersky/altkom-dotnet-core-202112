@@ -3,12 +3,13 @@ using Altkom.Shopper.Models;
 using Altkom.Shopper.Models.SearchCriterias;
 using Bogus;
 using Microsoft.AspNetCore.JsonPatch;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Altkom.Shopper.FakeRepositories
 {
+
+
     public class FakeCustomerRepository : ICustomerRepository
     {
         private readonly ICollection<Customer> customers;

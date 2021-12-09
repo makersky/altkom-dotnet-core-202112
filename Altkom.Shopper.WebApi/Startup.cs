@@ -34,6 +34,9 @@ namespace Altkom.Shopper.WebApi
             services.AddSingleton<Faker<Customer>, CustomerFaker>();
             services.AddSingleton<ICustomerRepository, FakeCustomerRepository>();
 
+            services.AddSingleton<Faker<Product>, ProductFaker>();
+            services.AddSingleton<IProductRepository, FakeProductRepository>();
+
 
             // Install-Package Microsoft.AspNetCore.Mvc.NewtonsoftJson
             services.AddControllers()
