@@ -1,3 +1,4 @@
+using Altkom.Shopper.Api.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,29 +21,55 @@ namespace Altkom.Shopper.Api
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
 
-            // Under construction
+            // Under construction Middleware
             // app.Run(context => context.Response.WriteAsync("Under construction"));
 
-            // Logger
+            // Logger Middleware
+            //app.Use(async (context, next) =>
+            //{
+            //    logger.LogInformation($"{context.Request.Method} {context.Request.Path}");
+
+            //    await next();
+
+            //    logger.LogInformation($"{context.Response.StatusCode}");
+            //});
+
+
+            // Authorization Middleware
+            //app.Use(async (context, next) =>
+            //{
+            //    if (context.Request.Headers.ContainsKey("Authorization"))
+            //    {
+            //        await next();
+            //    }
+            //    else
+            //    {
+            //        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            //    }
+            //});
+
+
+            if (env.IsDevelopment())
+            {
+                app.UseLogger();
+            }
+
+            app.UseMiddleware<FormatMiddleware>();
+
+            // app.UseMiddleware<AuthorizationMiddleware>();
+
+           // app.UseMyAuthorization();
+
+            // Customers Middleware
             app.Use(async (context, next) =>
             {
-                logger.LogInformation($"{context.Request.Method} {context.Request.Path}");
-
-                await next();
-
-                logger.LogInformation($"{context.Response.StatusCode}");
-            });
-
-            // Authorization
-            app.Use(async (context, next) =>
-            {
-                if (context.Request.Headers.ContainsKey("Authorization"))
+                if (context.Request.Path=="api/customers")
                 {
-                    await next();
+
                 }
                 else
                 {
-                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    await next();
                 }
             });
 

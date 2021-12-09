@@ -66,7 +66,7 @@ namespace Altkom.Shopper.WebApi
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            app.UseRouting();            
 
             app.UseAuthorization();
 
