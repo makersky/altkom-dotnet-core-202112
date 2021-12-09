@@ -98,7 +98,7 @@ namespace Altkom.Shopper.WebApi.Controllers
 
         // GET api/customers?Gender={gender}&from={from}&to={to}
         [HttpGet]
-        public ActionResult<IEnumerable<Customer>> Get(CustomerSearchCriteria searchCriteria)
+        public ActionResult<IEnumerable<Customer>> Get([FromQuery] CustomerSearchCriteria searchCriteria)
         {
             var customers = customerRepository.Get(searchCriteria);
 
