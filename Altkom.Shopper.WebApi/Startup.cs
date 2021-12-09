@@ -2,7 +2,10 @@ using Altkom.Shopper.FakeRepositories;
 using Altkom.Shopper.Fakers;
 using Altkom.Shopper.IRepositories;
 using Altkom.Shopper.Models;
+using Altkom.Shopper.Models.Validators;
 using Bogus;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,10 +40,13 @@ namespace Altkom.Shopper.WebApi
             services.AddSingleton<Faker<Product>, ProductFaker>();
             services.AddSingleton<IProductRepository, FakeProductRepository>();
 
+            services.AddTransient<IValidator<Product>, ProductValidator>();
 
             // Install-Package Microsoft.AspNetCore.Mvc.NewtonsoftJson
             services.AddControllers()
-                .AddNewtonsoftJson();
+                .AddNewtonsoftJson()
+                .AddFluentValidation() // FluentValidation.AspNetCore
+                ;
                
             services.AddSwaggerGen(c =>
             {

@@ -23,5 +23,19 @@ namespace Altkom.Shopper.WebApi.Controllers
         {
             return Ok(productRepository.Get());
         }
+
+
+        [HttpPost]
+        public ActionResult<Product> Post([FromBody] Product product)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            productRepository.Add(product);
+
+            return CreatedAtRoute(new { id = product.Id }, product);
+        }
     }
 }
