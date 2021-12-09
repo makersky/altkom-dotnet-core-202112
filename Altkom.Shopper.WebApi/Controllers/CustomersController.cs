@@ -145,6 +145,15 @@ namespace Altkom.Shopper.WebApi.Controllers
             return NoContent();
         }
 
+        // DELETE api/customers/{id}
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            customerRepository.Remove(id);
+
+            return Ok();
+        }
+
 
     }
 }
