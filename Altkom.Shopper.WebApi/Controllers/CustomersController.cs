@@ -1,6 +1,7 @@
 ﻿using Altkom.Shopper.IRepositories;
 using Altkom.Shopper.Models;
 using Altkom.Shopper.Models.SearchCriterias;
+using Altkom.Shopper.WebApi.DTO;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Altkom.Shopper.WebApi.Controllers
         }
 
 
-        [HttpGet("/api/ping")]        
+        [HttpGet("/api/ping")]
         public string Ping()
         {
             return "Pong";
@@ -35,18 +36,49 @@ namespace Altkom.Shopper.WebApi.Controllers
         //    return Ok(customers);
         //}
 
+        // DTO (Data Transfer Object)
+
         // GET api/customers/{id}
-        [HttpGet("{id}")]
-        public ActionResult<Customer> Get(int id)
+        [HttpGet("{id}", Name = nameof(GetCustomerById))]
+        public ActionResult<Customer> GetCustomerById(int id)
         {
             var customer = customerRepository.Get(id);
 
-            if (customer==null)
+            if (customer == null)
             {
                 return NotFound();
             }
 
             return Ok(customer);
+        }
+
+        // https://docs.microsoft.com/pl-pl/aspnet/core/fundamentals/routing?view=aspnetcore-6.0#route-constraint-reference
+
+        // GET api/customers/{pesel}
+        [HttpGet("{pesel:length(11)}")]
+        public ActionResult<Customer> GetByPesel(string pesel)
+        {
+            var customer = customerRepository.Get(pesel);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(customer);
+        }
+
+        private static CustomerDTO Map(Customer customer)
+        {
+            // Map
+            return new CustomerDTO
+            {
+                Id = customer.Id,
+                FullName = $"{customer.FirstName} {customer.LastName}",
+                Email = customer.Email,
+                Gender = customer.Gender,
+                Pesel = customer.Pesel
+            };
         }
 
         // [AcceptVerbs("HEAD")]
@@ -61,21 +93,7 @@ namespace Altkom.Shopper.WebApi.Controllers
             return Ok();
         }
 
-        // https://docs.microsoft.com/pl-pl/aspnet/core/fundamentals/routing?view=aspnetcore-6.0#route-constraint-reference
-
-        // GET api/customers/{pesel}
-        [HttpGet("{pesel:length(11)}")]
-        public ActionResult<Customer> Get(string pesel)
-        {
-            var customer = customerRepository.Get(pesel);
-
-            if (customer == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(customer);
-        }
+      
 
         // GET api/customers?Gender={gender}&from={from}&to={to}
         [HttpGet]
@@ -85,6 +103,20 @@ namespace Altkom.Shopper.WebApi.Controllers
 
             return Ok(customers);
 
+        }
+
+        // POST api/customers
+        [HttpPost]
+        public ActionResult<Customer> Post([FromBody] Customer customer)
+        {
+            customerRepository.Add(customer);
+
+            // zła praktyka
+            // return Created($"https://localhost:5001/api/customers/{customer.Id}", customer);
+
+            // return CreatedAtRoute("GetCustomerById", new { id = customer.Id }, customer);
+
+            return CreatedAtRoute(nameof(GetCustomerById), new { id = customer.Id }, customer);
         }
 
 
