@@ -8,6 +8,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -66,12 +67,27 @@ namespace Altkom.Shopper.WebApi
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();            
+            app.UseRouting();                            
 
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGet("api/orders", async context =>
+                {
+                    await context.Response.WriteAsync("Hello Orders!");
+                });
+
+                endpoints.MapGet("api/orders/{id:int}", async context =>
+                {
+                    int id = Convert.ToInt32(context.Request.RouteValues["id"]);
+
+                    await context.Response.WriteAsync("Hello Orders!");
+                });
+
+                // .NET 6 (Minimal API)
+                // endpoints.MapGet("api/orders/{id:int}", (int id, IOrderRepository orderRepository) => orderRepository.Get(id))
+
                 endpoints.MapControllers();
             });
         }

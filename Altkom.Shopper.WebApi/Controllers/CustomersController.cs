@@ -22,7 +22,6 @@ namespace Altkom.Shopper.WebApi.Controllers
             this.customerRepository = customerRepository;
         }
 
-
         [HttpGet("/api/ping")]
         public string Ping()
         {
