@@ -17,6 +17,11 @@ namespace Altkom.Shopper.FakeRepositories
             return entities.Where(p => p.Color == color);
         }
 
+        public IEnumerable<Product> GetByCustomer(int customerId)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void Remove(int id)
         {
             Product product = Get(id);

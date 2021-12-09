@@ -37,5 +37,12 @@ namespace Altkom.Shopper.WebApi.Controllers
 
             return CreatedAtRoute(new { id = product.Id }, product);
         }
+
+        // GET api/customers/10/products
+        [HttpGet("/api/customers/{id}/products")]
+        public ActionResult<IEnumerable<Product>> GetByCustomer(int customerId)
+        {
+            return Ok(productRepository.GetByCustomer(customerId));
+        }
     }
 }
