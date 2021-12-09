@@ -15,6 +15,7 @@ namespace Altkom.Shopper.IRepositories
 
         // dobra praktyka:
         IEnumerable<Customer> Get(CustomerSearchCriteria searchCriteria);
+        bool Exists(string pesel);
 
        
     }

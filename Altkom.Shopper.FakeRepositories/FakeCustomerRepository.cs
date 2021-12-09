@@ -33,6 +33,11 @@ namespace Altkom.Shopper.FakeRepositories
             return customers.Any(c => c.Id == id);
         }
 
+        public bool Exists(string pesel)
+        {
+            return customers.Any(c => c.Pesel == pesel);
+        }
+
         public IEnumerable<Customer> Get()
         {
             return customers;

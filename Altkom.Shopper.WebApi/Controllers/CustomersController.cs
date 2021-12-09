@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace Altkom.Shopper.WebApi.Controllers
 {
     [Route("api/[controller]")]
+   // [ApiController]
     public class CustomersController : ControllerBase
     {
         private readonly ICustomerRepository customerRepository;
@@ -110,6 +111,16 @@ namespace Altkom.Shopper.WebApi.Controllers
         [HttpPost]
         public ActionResult<Customer> Post([FromBody] Customer customer)
         {
+            if (customerRepository.Exists(customer.Pesel))
+            {
+                ModelState.AddModelError("pesel", "Taki pesel już istnieje");
+            }
+                    
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             customerRepository.Add(customer);
 
             // zła praktyka
