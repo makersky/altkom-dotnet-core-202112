@@ -2,8 +2,10 @@
 using Altkom.Shopper.Models;
 using Altkom.Shopper.Models.SearchCriterias;
 using Altkom.Shopper.WebApi.DTO;
+using Altkom.Shopper.WebApi.Hubs;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +18,12 @@ namespace Altkom.Shopper.WebApi.Controllers
     public class CustomersController : ControllerBase
     {
         private readonly ICustomerRepository customerRepository;
+        private readonly IHubContext<CustomersHub> hubContext;
 
-        public CustomersController(ICustomerRepository customerRepository)
+        public CustomersController(ICustomerRepository customerRepository, IHubContext<CustomersHub> hubContext)
         {
             this.customerRepository = customerRepository;
+            this.hubContext = hubContext;
         }
 
         [HttpGet("/api/ping")]
@@ -113,7 +117,7 @@ namespace Altkom.Shopper.WebApi.Controllers
 
         // POST api/customers
         [HttpPost]
-        public ActionResult<Customer> Post([FromBody] Customer customer)
+        public async Task<ActionResult<Customer>> Post([FromBody] Customer customer)
         {
             if (customerRepository.Exists(customer.Pesel))
             {
@@ -126,6 +130,8 @@ namespace Altkom.Shopper.WebApi.Controllers
             }
 
             customerRepository.Add(customer);
+
+            await hubContext.Clients.All.SendAsync("AddedCustomer", customer);
 
             // zła praktyka
             // return Created($"https://localhost:5001/api/customers/{customer.Id}", customer);

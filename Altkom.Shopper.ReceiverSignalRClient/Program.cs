@@ -18,9 +18,17 @@ namespace Altkom.Shopper.ReceiverSignalRClient
 
             // Install-Package Microsoft.AspNetCore.SignalR.Client
 
+            string token = "your-token";
+
             HubConnection connection = new HubConnectionBuilder()
-                .WithUrl(url)
+                .WithUrl(url, 
+                    options => options.Headers.Add("Authorization", $"Bearer {token}" ))
+                .WithAutomaticReconnect()
                 .Build();
+
+            connection.Reconnecting += Connection_Reconnecting;
+
+            connection.Reconnected += Connection_Reconnected;
 
             connection.On<string>("YouHaveGotMessage",
                 message => Console.WriteLine($"Received {message}"));
@@ -37,6 +45,20 @@ namespace Altkom.Shopper.ReceiverSignalRClient
 
             Console.ResetColor();
 
+        }
+
+        private static Task Connection_Reconnected(string arg)
+        {
+            Console.WriteLine("Reconnected.");
+
+            return Task.CompletedTask;
+        }
+
+        private static Task Connection_Reconnecting(Exception arg)
+        {
+            Console.WriteLine("Reconnecting...");
+
+            return Task.CompletedTask;
         }
     }
 }
