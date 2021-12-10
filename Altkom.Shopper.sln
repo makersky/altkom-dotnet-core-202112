@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altkom.Shopper.Tracking.Rec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alkom.Shopper.WorkerService", "Alkom.Shopper.WorkerService\Alkom.Shopper.WorkerService.csproj", "{D1427412-0BB5-4B07-80E4-C753CD886EE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altkom.Shopper.WorkerServiceApi", "Altkom.Shopper.WorkerServiceApi\Altkom.Shopper.WorkerServiceApi.csproj", "{9F3ECD93-5033-4F60-9D79-EC037D830D91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{D1427412-0BB5-4B07-80E4-C753CD886EE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1427412-0BB5-4B07-80E4-C753CD886EE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1427412-0BB5-4B07-80E4-C753CD886EE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F3ECD93-5033-4F60-9D79-EC037D830D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F3ECD93-5033-4F60-9D79-EC037D830D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F3ECD93-5033-4F60-9D79-EC037D830D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F3ECD93-5033-4F60-9D79-EC037D830D91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
