@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "Altkom.Shopper.Tracking.Api";
+
+package tracking;
+
+service TrackingService {
+	rpc AddLocation (AddLocationRequest) returns (AddLocationResponse);
+}
+
+message AddLocationRequest {
+	float latitude = 1;
+	float longitude = 2;
+	int32 vehicle_id = 3;
+}
+
+message AddLocationResponse {
+	bool is_confirmed = 1;
+}
+
+
+
