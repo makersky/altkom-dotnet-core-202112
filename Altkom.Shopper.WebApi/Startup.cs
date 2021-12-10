@@ -71,6 +71,9 @@ namespace Altkom.Shopper.WebApi
             // Install-Package AspNetCore.HealthCheck.UI            
             services.AddHealthChecksUI()
                 .AddInMemoryStorage();
+
+
+            services.Configure<FakeCustomerRepositoryOptions>(Configuration.GetSection("FakeCustomerRepositoryOptions"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -111,7 +114,7 @@ namespace Altkom.Shopper.WebApi
                 endpoints.MapHub<CustomersHub>("/signalr/customers");
 
                 // Install-Package AspNetCore.HealthCheck.UI.Client
-                endpoints.MapHealthChecks("/health", new HealthCheckOptions()
+                endpoints.MapHealthChecks(Configuration["HealthCheck:Endpoint"], new HealthCheckOptions()
                 {
                     Predicate = _ => true,
                     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse

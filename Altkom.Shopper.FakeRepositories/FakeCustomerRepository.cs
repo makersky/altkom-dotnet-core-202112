@@ -3,20 +3,24 @@ using Altkom.Shopper.Models;
 using Altkom.Shopper.Models.SearchCriterias;
 using Bogus;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Altkom.Shopper.FakeRepositories
 {
-
+    public class FakeCustomerRepositoryOptions
+    {
+        public int Quantity { get; set; }
+    }
 
     public class FakeCustomerRepository : ICustomerRepository
     {
         private readonly ICollection<Customer> customers;
 
-        public FakeCustomerRepository(Faker<Customer> faker)
+        public FakeCustomerRepository(Faker<Customer> faker, IOptions<FakeCustomerRepositoryOptions> options)
         {
-            customers = faker.Generate(100);           
+            customers = faker.Generate(options.Value.Quantity);
         }
 
         public void Add(Customer customer)
