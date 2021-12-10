@@ -3,17 +3,21 @@ using Altkom.Shopper.Fakers;
 using Altkom.Shopper.IRepositories;
 using Altkom.Shopper.Models;
 using Altkom.Shopper.Models.Validators;
+using Altkom.Shopper.WebApi.HealthChecks;
 using Altkom.Shopper.WebApi.Hubs;
 using Bogus;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
@@ -57,6 +61,16 @@ namespace Altkom.Shopper.WebApi
 
 
             services.AddSignalR();
+
+            services.AddHealthChecks()
+                .AddCheck("Ping", () => HealthCheckResult.Healthy())
+                .AddCheck<RandomHealthCheck>("random");
+
+            // https://github.com/xabaril/AspNetCore.Diagnostics.HealthChecks
+
+            // Install-Package AspNetCore.HealthCheck.UI            
+            services.AddHealthChecksUI()
+                .AddInMemoryStorage();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -95,6 +109,16 @@ namespace Altkom.Shopper.WebApi
                 endpoints.MapControllers();
 
                 endpoints.MapHub<CustomersHub>("/signalr/customers");
+
+                // Install-Package AspNetCore.HealthCheck.UI.Client
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions()
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+
+                // http://localhost:5000/healthchecks-ui
+                endpoints.MapHealthChecksUI();
             });
         }
     }
