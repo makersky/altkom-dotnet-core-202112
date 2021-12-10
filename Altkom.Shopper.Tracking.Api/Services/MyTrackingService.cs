@@ -1,4 +1,5 @@
-﻿using Grpc.Core;
+﻿using Bogus;
+using Grpc.Core;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,29 @@ namespace Altkom.Shopper.Tracking.Api.Services
             return Task.FromResult(response);
         }
 
-        
+        public override async Task SubscribeLocation(
+            SubscribeLocationRequest request, 
+            IServerStreamWriter<SubscribeLocationResponse> responseStream, 
+            ServerCallContext context)
+        {
+
+            var responses = new Faker<SubscribeLocationResponse>()
+                .RuleFor(p => p.Latitude, f => (float)f.Address.Latitude())
+                .RuleFor(p => p.Longitude, f => (float)f.Address.Longitude())
+                .GenerateForever();
+
+            foreach (var response in responses)
+            {
+                await responseStream.WriteAsync(response);
+
+                logger.LogInformation($"lng: {response.Longitude} lat: {response.Latitude}");
+
+                await Task.Delay(TimeSpan.FromSeconds(10));
+            }
+
+            
+        }
+
+
     }
 }
