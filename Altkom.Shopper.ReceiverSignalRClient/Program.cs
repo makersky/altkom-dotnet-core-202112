@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
+﻿using Altkom.Shopper.Models;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Threading.Tasks;
 
@@ -23,6 +24,9 @@ namespace Altkom.Shopper.ReceiverSignalRClient
 
             connection.On<string>("YouHaveGotMessage",
                 message => Console.WriteLine($"Received {message}"));
+
+            connection.On<Customer>("AddedCustomer",
+                customer => Console.WriteLine($"Received {customer.FirstName} {customer.LastName}"));
 
             Console.WriteLine($"Connecting to {url}...");
             await connection.StartAsync();

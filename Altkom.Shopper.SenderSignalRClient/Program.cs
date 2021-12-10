@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
+﻿using Altkom.Shopper.Fakers;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Threading.Tasks;
 
@@ -28,6 +29,20 @@ namespace Altkom.Shopper.SenderSignalRClient
             Console.WriteLine("Sending...");
             await connection.SendAsync("SendMessage", "Hello World!");
             Console.WriteLine("Sent.");
+
+            var customerFaker = new CustomerFaker();
+
+            var customers = customerFaker.GenerateForever();
+
+            foreach (var customer in customers)
+            {                
+                await connection.SendAsync("SendAddedCustomer", customer);
+
+                Console.WriteLine($"Sent {customer.FirstName} {customer.LastName}");
+
+                await Task.Delay(TimeSpan.FromMilliseconds(1));
+            }
+
 
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();

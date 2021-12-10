@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Altkom.Shopper.Models;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,11 @@ namespace Altkom.Shopper.WebApi.Hubs
         public async Task SendMessage(string message)
         {
             await Clients.All.SendAsync("YouHaveGotMessage", message);
+        }
+
+        public async Task SendAddedCustomer(Customer customer)
+        {
+            await Clients.All.SendAsync("AddedCustomer", customer);
         }
     }
 }
